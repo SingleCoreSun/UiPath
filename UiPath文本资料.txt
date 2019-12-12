@@ -1,0 +1,85 @@
+UIpath使用笔记 C#
+​
+Array初始化
+		new String[] {"value3","value4"}
+​
+List初始化
+		new List<String>(){"value1","value2"}
+		
+	List使用invoke method增加元素时使用 【Add】 要区分大小写
+​
+Dictionary
+	里面的每一个元素都是一个键值对(由二个元素组成：键和值)；
+	键必须是唯一的,而值不需要唯一的；
+	键和值都可以是任何类型(比如：string, int32,Net类型)；
+	
+Split
+	String.Split 方法有6个重载函数：
+	程序代码
+	1) public string[] Split(params char[] separator)
+	2) public string[] Split(char[] separator, int count)
+	3) public string[] Split(char[] separator, StringSplitOptions options)
+	4) public string[] Split(string[] separator, StringSplitOptions options)
+	5) public string[] Split(char[] separator, int count, StringSplitOptions options)
+	6) public string[] Split(string[] separator, int count, StringSplitOptions options)
+	
+	下边我们通过一些实例来说明下怎么使用(以下string words = "1,2.3,,4";)：
+	1. public string[] Split(params char[] separator)
+	程序代码
+	string[] split = words.Split(new Char[] { ',' });//返回:{"1","2.3","","4"}
+	string[] split = words.Split(new Char[] { ',', '.' });//返回:{"1","2","3","","4"} 
+	2. public string[] Split(char[] separator, int count)
+	程序代码
+	string[] split = words.Split(new Char[] { ',', '.' }, 2);//返回:{"1","2.3,,4"}
+	string[] split = words.Split(new Char[] { ',', '.' }, 6);//返回:{"1","2","3","","4"} 
+	3. public string[] Split(char[] separator, StringSplitOptions options)
+	程序代码
+	string[] split = words.Split(new Char[] { ',', '.' }, StringSplitOptions.RemoveEmptyEntries);//返回:{"1","2","3","4"} 不保留空元素
+	string[] split = words.Split(new Char[] { ',', '.' }, StringSplitOptions.None);//返回:{"1","2","3","","4"} 保留空元素 
+	4. public string[] Split(string[] separator, StringSplitOptions options)
+	程序代码
+	string[] split = words.Split(new string[] { ",", "." }, StringSplitOptions.RemoveEmptyEntries);//返回:{"1","2","3","4"} 不保留空元素
+	string[] split = words.Split(new string[] { ",", "." }, StringSplitOptions.None);//返回:{"1","2","3","","4"} 保留空元素 
+	5. public string[] Split(char[] separator, int count, StringSplitOptions options)
+	程序代码
+	string[] split = words.Split(new Char[] { ',', '.' }, 2, StringSplitOptions.RemoveEmptyEntries);//返回:{"1","2.3,,4"} 不保留空元素
+	string[] split = words.Split(new Char[] { ',', '.' }, 6, StringSplitOptions.None);//返回:{"1","2","3","","4"} 保留空元素 
+	6. public string[] Split(string[] separator, int count, StringSplitOptions options)
+	程序代码
+	string[] split = words.Split(new string[] { ",", "." }, 2, StringSplitOptions.RemoveEmptyEntries);//返回:{"1","2.3,,4"} 不保留空元素
+	string[] split = words.Split(new string[] { ",", "." }, 6, StringSplitOptions.None);//返回:{"1","2","3","","4"} 保留空元素
+	需要注意的是没有重载函数public string[] Split(string[] separator)，所以我们不能像VB.NET那样使用words.Split(",")，而只能使用words.Split(','）
+	
+DataTable 读取CSV
+	读取进来之后需要使用 输出数据表 做一次内容保存，
+	将表内容保存到String类型中去
+	
+	取CSV数据时，先取行数据，datarow
+	datarow是以itemarray作为数组保存内容的。
+	输出使用 ↓
+		item.ItemArray[0].ToString()	//取出的数组索引
+		item["name"].ToString()			//按照列名
+		item[0].ToString()				//按列索引顺序
+		
+录制操作
+		三种输入方式				适用范围			支持后台			速度		支持热键		支持EmptyField
+		Default						 100 %			   		×				50 %			√				  ×
+		Window Message				  80 %			   		√				50 %			√				  ×
+		Simulate Type/Click	 	99%web 60%destop	   		√				100%			×				  √
+		
+屏幕抓取
+		三种抓取方式		速度		ACCURACY		支持后台		获取位置	获取隐藏文本	CITRIX环境
+		FullText			100%		  100%				√				×			√				×
+		Native				80 %		  100%				×				√			×				×
+		OCR					30 %		  98 %				×				√			×				√
+		
+获取文本方法
+Basic Recording	getText
+Full Text		getFullText
+Native			getVisibleText
+OCR				getOCRText
+​
+=======================================================
+词汇对照
+	Invoke Method			调用方法
+​
