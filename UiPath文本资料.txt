@@ -79,7 +79,16 @@ Full Text		getFullText
 Native			getVisibleText
 OCR				getOCRText
 ​
+锚点使用
+		当可靠的选取器不可用时
+		可以使用【锚点基准】-【Anchor Base】功能
+		然后选择【锚点】-【Anchor】以及对应的操作
+		选取【锚点】可以使用【查找元素】-【Find Element】功能
+		操作可以选择类似【输入信息】-【Type Into】的功能
 =======================================================
 词汇对照
 	Invoke Method			调用方法
-​
+​	Anchor Base				锚点基准
+	Anchor					锚点
+	Find Element			查找元素
+	Type Into				输入信息
